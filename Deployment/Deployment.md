@@ -217,6 +217,8 @@ openssl rand -hex 32
 ```
 docker compose up -d
 ```
+
+> Disabling `MISP.showCorrelationsOnIndex` fixed the login delay issue.
 </details>
 
 <details>
