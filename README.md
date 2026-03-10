@@ -18,6 +18,17 @@
 </a>
 </div>
 
+<div align="center">
+
+  
+  [MISP Features and Functionalities](https://www.misp-project.org/features/)
+  ---
+  [MISP Documentation and Support](https://www.misp-project.org/documentation/)
+  ---
+  [MISP Performance Tuning](https://misp-project.org/misp-performance-tuning/)
+  ---
+</div>
+
 Table of Contents
 -----------------
 - 🗒️ [Deployment](https://github.com/MrM8BRH/MISP/blob/main/Deployment/Deployment.md)
