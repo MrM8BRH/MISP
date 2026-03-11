@@ -215,8 +215,6 @@ BASE_URL
 ```
 #### Notes
 
-> **Important:** In the table below, several settings are formatted in **bold**. It is strongly recommended to override these values at a minimum before deployment.
-
 > **Important:** Any passwords used **must not contain** the following characters:  
 > `\` (backslash) or `+` (plus).  
 > Including these characters may cause the container to fail during startup.
