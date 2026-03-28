@@ -1,25 +1,62 @@
 <details>
-<summary><b>Minimum System Requirements (Production)</b></summary>
+<summary><b>MISP Deployment Sizing Guidelines</b></summary>
 
-Recommended baseline for **production environments**:
-| Component      | Recommended                         |
-| -------------- | ----------------------------------- |
-| CPU            | 8+ vCPUs                            |
-| RAM            | 32–128 GB                           |
-| Disk           | 300–500 GB SSD                      |
-| OS			       | Debian / RHEL / Rocky Linux  		   |
+The following specifications outline recommended resource allocations for two common deployment tiers: **Proof-of-Concept (PoC)** and **Production**.
 
-**Partitioning**:
+### 1. Proof-of-Concept (PoC)
 
-| Mount Point  | Filesystem 				| Size              | Device Type            |
-|-------------|-----------------------------|-------------------|------------------------|
-| swap        | swap       					| 16 GB            | LVM					 |
-| /tmp        | ext4       					| 16 GB            | LVM				     |
-| /           | ext4       					| 20 GB            | LVM                    |
-| /boot       | ext4       					| 1 GB             | Standard partition	 |
-| /boot/efi   | EFI System Partition        | 1 GB             | Standard partition	 |
-| biosboot    | BIOS Boot			        | 1 GB             | Standard partition	 |
-| /var        | ext4       					| Remaining storage | LVM                    |
+Intended for testing, demonstrations, or small pilot environments with limited users and moderate data ingestion.
+
+#### Recommended Specifications
+- **CPU:** 2–4 vCPUs  
+- **Memory:** 8–16 GB RAM  
+- **Storage:** 200–300 GB SSD (recommended)  
+- **Database:** MariaDB (hosted on SSD)  
+- **Operating System:** Linux (RHEL or Debian preferred)
+
+### 2. Production
+Designed for operational environments with active analyst usage, integrations, and continuous intelligence ingestion.
+
+#### Recommended Specifications
+- **CPU:** 8–16 vCPUs  
+- **Memory:** 32–64 GB RAM  
+- **Storage:** 1–2 TB SSD (dependent on retention and attachments)  
+- **Database:** MariaDB on SSD with a defined backup strategy  
+- **Operating System:** Linux (RHEL or Debian preferred)
+
+For large-scale environments (e.g., extensive sharing communities or high ingestion rates), scaling beyond baseline is expected (e.g., 32+ vCPUs, 128 GB RAM), depending on correlation intensity, feed volume, and API activity.
+
+---
+
+### Additional Considerations
+
+Capacity requirements are influenced by the following factors:
+
+- **Correlation Activity:** High correlation workloads increase CPU and memory utilization  
+- **Attachments & Malware Samples:** Direct impact on storage consumption  
+- **Concurrent Users & API Usage:** Drives CPU and memory demand  
+- **Feed Caching:** Multiple active feeds can significantly increase RAM usage  
+- **Logging & Retention Policies:** Affect database growth and storage sizing  
+
+> **Note:** SSD storage is strongly recommended, particularly for MariaDB, to ensure optimal I/O performance and reduced latency.
+
+---
+
+### Disk Partitioning Layout (PoC & Production)
+
+The following partitioning scheme is recommended for both PoC and Production deployments:
+
+| Mount Point | Filesystem              | Size               | Device Type         |
+|-------------|------------------------|--------------------|---------------------|
+| swap        | swap                   | 16 GB              | LVM                 |
+| /tmp        | ext4                   | 16 GB              | LVM                 |
+| /           | ext4                   | 20 GB              | LVM                 |
+| /boot       | ext4                   | 1 GB               | Standard partition  |
+| /boot/efi   | EFI System Partition   | 1 GB               | Standard partition  |
+| biosboot    | BIOS Boot              | 1 GB               | Standard partition  |
+| /var        | ext4                   | Remaining storage  | LVM                 |
+
+> **Note:** `/var` should be allocated the majority of available storage, as it hosts MISP data, logs, attachments, and database files.
 
 </details>
 
