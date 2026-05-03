@@ -32,3 +32,4 @@
 Table of Contents
 -----------------
 - 🗒️ [Deployment](https://github.com/MrM8BRH/MISP/blob/main/Deployment/Deployment.md)
+- 🗒️ [Integrations](https://github.com/MrM8BRH/MISP/blob/main/Deployment/Integrations.md)
